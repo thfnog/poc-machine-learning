@@ -19,13 +19,14 @@ sys.path.append(os.path.dirname(SCRIPT_DIR))
 pipe = joblib.load('model.pkl')
 
 # make new dataset
-new_data = createNewData()
-# scaler transformer
-pipe.transform(new_data)
+# createNewData()
 
 # New data to predict
 pr = pd.read_csv('datas/new_data.csv')
 pred_cols = list(pr.columns.values)[:-1]
+
+# scaler transformer
+pipe.transform(pr[pred_cols])
 
 # model predict
 # apply the whole pipeline to data
