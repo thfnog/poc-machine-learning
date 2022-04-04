@@ -22,12 +22,12 @@ pipe = joblib.load('model.pkl')
 new_data = createNewData()
 # scaler transformer
 pipe.transform(new_data)
-# model predict
 
 # New data to predict
 pr = pd.read_csv('datas/new_data.csv')
 pred_cols = list(pr.columns.values)[:-1]
 
+# model predict
 # apply the whole pipeline to data
 pred = pd.Series(pipe.predict(pr[pred_cols]))
 print(pred)
