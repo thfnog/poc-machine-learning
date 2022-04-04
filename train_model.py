@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Wed May  9 10:10:04 2018
-
-@author: Frank
-"""
 
 from data_digest import AttractionsData
 from surprise import KNNBasic, SVD
@@ -30,9 +25,23 @@ class ModelObj:
     ml = ml
 modelObj = ModelObj()
 
+# recommender_metrics.
 cross_validate(model, data, measures=['RMSE', 'MAE'], cv=5, return_train_measures=True, verbose=True)
         
 # Save model
 with open('model.pickle', 'wb') as f:
     pickle.dump(modelObj, f)
     
+    
+# benchmark = []
+# # Iterate over all algorithms
+# for algorithm in [SVD(), SVDpp(), SlopeOne(), NMF(), NormalPredictor(), KNNBaseline(), KNNBasic(), KNNWithMeans(), KNNWithZScore(), BaselineOnly(), CoClustering()]:
+#     # Perform cross validation
+#     results = cross_validate(algorithm, data, measures=['RMSE'], cv=3, verbose=False)
+    
+#     # Get results & append algorithm name
+#     tmp = pd.DataFrame.from_dict(results).mean(axis=0)
+#     tmp = tmp.append(pd.Series([str(algorithm).split(' ')[0].split('.')[-1]], index=['Algorithm']))
+#     benchmark.append(tmp)
+    
+# pd.DataFrame(benchmark).set_index('Algorithm').sort_values('test_rmse') 
